@@ -19,21 +19,21 @@ class _MainState extends State<Main> {
     return Scaffold(
       body: IndexedStack(index: _selectedIndex, children: _pages),
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           border: Border(top: BorderSide(color: Colors.black12)),
         ),
         child: BottomNavigationBar(
           items: [
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.home),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.home),
               label: "Accueil",
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.shopping_cart_rounded),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart_rounded),
               label: "Panier",
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.insert_chart_outlined_rounded),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.insert_chart_outlined_rounded),
               label: "Commandes",
             ),
           ],
