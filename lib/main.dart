@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hubert_eat/models/restaurant.dart';
+import 'package:hubert_eat/widgets/restauCard.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,8 +11,22 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+    return MaterialApp(
+      home: Scaffold(
+        body: Column(
+          children: [
+            SizedBox(height: 250),
+            Center(
+              child: Restaucard(
+                title: 'Crousty Sabaidi',
+                frais: 2.85,
+                avis: 4.6,
+                time: 20,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
