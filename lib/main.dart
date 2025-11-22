@@ -16,14 +16,7 @@ class MainApp extends StatelessWidget {
         body: Column(
           children: [
             SizedBox(height: 250),
-            Center(
-              child: Restaucard(
-                title: 'Crousty Sabaidi',
-                frais: 2.85,
-                avis: 4.6,
-                time: 20,
-              ),
-            ),
+            Center(child: Restaucard(title: 'Crousty Sabaidi')),
           ],
         ),
       ),

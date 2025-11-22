@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class Restaucard extends StatelessWidget {
-  String title;
-  double frais;
-  double avis;
-  int time;
-  Restaucard({
-    super.key,
-    required this.title,
-    required this.frais,
-    required this.avis,
-    required this.time,
-  });
+  final String title;
+
+  const Restaucard({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
+    final avis = 1 + Random().nextDouble() * (5 - 1);
+    final int nombreAvis = Random().nextInt(9991) + 10;
+    final double frais = Random().nextDouble() * 5;
+    final int time = Random().nextInt(21) + 30;
+
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,8 +29,10 @@ class Restaucard extends StatelessWidget {
             title,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
-          Text('frais de livraison à $frais € - $time min'),
-          Text('$avis ⭐'),
+          Text(
+            'frais de livraison à ${frais.toStringAsFixed(2)} € - $time min',
+          ),
+          Text('${avis.toStringAsFixed(1)}⭐ ($nombreAvis+ )'),
         ],
       ),
     );
