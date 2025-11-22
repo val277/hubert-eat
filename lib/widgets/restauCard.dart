@@ -27,19 +27,12 @@ class Restaucard extends StatelessWidget {
               child: Image.network("https://placehold.co/90x70.png"),
             ),
           ),
-          SizedBox(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
-                Text('frais de livraison à $frais € - $time min'),
-                Text('$avis ⭐'),
-              ],
-            ),
+          Text(
+            title,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
+          Text('frais de livraison à $frais € - $time min'),
+          Text('$avis ⭐'),
         ],
       ),
     );
