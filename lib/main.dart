@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hubert_eat/viewmodels/home_vm.dart';
 import 'package:hubert_eat/views/main.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => HomeVm())],
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
