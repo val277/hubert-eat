@@ -45,6 +45,7 @@ class ScrollableRestauCard extends StatelessWidget {
                           itemBuilder: (context, index) => Restaucard(
                             title: restaurants[index].restaurantName,
                             width: 300,
+                            id: restaurants[index].restaurantID,
                           ),
                         );
                 },

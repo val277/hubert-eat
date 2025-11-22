@@ -73,6 +73,7 @@ class _HomeVState extends State<HomeV> {
                       viewModel.restaurants.length,
                       (index) => Restaucard(
                         title: viewModel.restaurants[index].restaurantName,
+                        id: viewModel.restaurants[index].restaurantID,
                       ),
                     ),
                   ],

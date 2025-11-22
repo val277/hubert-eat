@@ -20,29 +20,27 @@ class ProductCard extends StatelessWidget {
       height: 130,
       child: Row(
         children: [
-          SingleChildScrollView(
-            child: Expanded(
-              flex: 4,
-              child: Column(
-                children: [
-                  Text(
-                    itemName,
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '$itemPrice €',
-                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
-                  ),
-                  Text(itemDescription),
-                ],
-              ),
+          Expanded(
+            flex: 4,
+            child: Column(
+              children: [
+                Text(
+                  itemName,
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '$itemPrice €',
+                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                ),
+                Text(itemDescription),
+              ],
             ),
           ),
           Expanded(
             flex: 2,
             child: ClipRRect(
               borderRadius: BorderRadiusGeometry.circular(15),
-              child: Image.network(imageUrl),
+              child: Image.network(imageUrl, fit: BoxFit.cover),
             ),
           ),
         ],

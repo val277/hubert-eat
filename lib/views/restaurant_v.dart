@@ -8,7 +8,13 @@ import 'package:hubert_eat/widgets/productCard.dart';
 class RestauV extends StatefulWidget {
   final String title;
   final int id;
-  const RestauV({super.key, required this.title, required this.id});
+  final String image;
+  const RestauV({
+    super.key,
+    required this.title,
+    required this.id,
+    required this.image,
+  });
 
   @override
   State<RestauV> createState() => _RestauVState();
@@ -38,6 +44,7 @@ class _RestauVState extends State<RestauV> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -45,10 +52,7 @@ class _RestauVState extends State<RestauV> {
               SizedBox(
                 height: 250,
                 width: double.infinity,
-                child: Image.network(
-                  "https://placehold.co/600x400.png",
-                  fit: BoxFit.cover,
-                ),
+                child: Image.network(widget.image, fit: BoxFit.cover),
               ),
               Padding(
                 padding: const EdgeInsets.all(10),
@@ -85,7 +89,10 @@ class _RestauVState extends State<RestauV> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 30),
                     ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       itemCount: products.length,
                       itemBuilder: (context, index) {
                         return ProductCard(
