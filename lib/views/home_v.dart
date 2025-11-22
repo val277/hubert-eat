@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hubert_eat/models/restaurant.dart';
 import 'package:hubert_eat/viewmodels/home_vm.dart';
-import 'package:hubert_eat/views/restaurant_v.dart';
 import 'package:hubert_eat/widgets/restauCard.dart';
+import 'package:hubert_eat/widgets/scrollable_restau_card.dart';
 import 'package:provider/provider.dart';
 
 class HomeV extends StatefulWidget {
@@ -25,28 +26,59 @@ class _HomeVState extends State<HomeV> {
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
-          spacing: 20,
           children: [
             tagsWidget(),
-            ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Scaffold(
-                    body: RestauV(title: "value.restaurantName", id: 5),
-                  ),
-                ),
-              ),
-              child: Text('test restau'),
+            ScrollableRestauCard(
+              title: "À découvrir sur Hubert Eat",
+              numberOfRestaurants: 5,
             ),
-            Restaucard(title: "Crousty"),
-            Restaucard(title: "Subway"),
-            Restaucard(title: "Quick"),
-            Restaucard(title: "Mcdo"),
-            Restaucard(title: "Burger King"),
+            ScrollableRestauCard(
+              title: "Lieux susceptibles de vous\n intéresser",
+              numberOfRestaurants: 5,
+            ),
+            ScrollableRestauCard(
+              title: "Adapté à vos goûts",
+              numberOfRestaurants: 10,
+            ),
+            allRestaurantsWidget(),
           ],
         ),
       ),
+    );
+  }
+
+  Widget allRestaurantsWidget() {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 8, top: 8),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Text(
+                "Tous les établissements",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              ),
+            ),
+          ),
+        ),
+        Consumer<HomeVm>(
+          builder: (context, viewModel, child) => viewModel.restaurants.isEmpty
+              ? const Center(child: CircularProgressIndicator())
+              : Column(
+                  spacing: 8,
+                  children: [
+                    ...List.generate(
+                      viewModel.restaurants.length,
+                      (index) => Restaucard(
+                        title: viewModel.restaurants[index].restaurantName,
+                      ),
+                    ),
+                  ],
+                ),
+        ),
+      ],
     );
   }
 

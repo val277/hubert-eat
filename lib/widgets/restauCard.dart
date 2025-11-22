@@ -1,10 +1,39 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-class Restaucard extends StatelessWidget {
-  final String title;
+import 'package:hubert_eat/viewmodels/home_vm.dart';
 
-  const Restaucard({super.key, required this.title});
+class Restaucard extends StatefulWidget {
+  final String title;
+  final double width;
+
+  const Restaucard({
+    super.key,
+    required this.title,
+    this.width = double.infinity,
+  });
+
+  @override
+  State<Restaucard> createState() => _RestaucardState();
+}
+
+class _RestaucardState extends State<Restaucard> {
+  String image = "https://placehold.co/600x400.png";
+
+  @override
+  void initState() {
+    super.initState();
+    loadImage();
+  }
+
+  Future<void> loadImage() async {
+    var temp = await HomeVm.getImage();
+    if (temp != null) {
+      setState(() {
+        image = temp;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,23 +44,22 @@ class Restaucard extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
-      child: Container(
+      child: SizedBox(
+        width: widget.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               height: 130,
-              width: double.infinity,
+              width: widget.width,
               child: ClipRRect(
                 borderRadius: BorderRadiusGeometry.circular(15),
-                child: Image.network(
-                  "https://placehold.co/600x400.png",
-                  fit: BoxFit.cover,
-                ),
+                child: Image.network(image, fit: BoxFit.cover),
               ),
             ),
             Text(
-              title,
+              widget.title,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
             Text(
