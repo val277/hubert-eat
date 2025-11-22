@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:hubert_eat/models/restaurant.dart';
-import 'package:hubert_eat/widgets/restauCard.dart';
+import 'package:hubert_eat/viewmodels/home_vm.dart';
+import 'package:hubert_eat/views/main.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => HomeVm())],
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -11,15 +17,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Column(
-          children: [
-            SizedBox(height: 250),
-            Center(child: Restaucard(title: 'Crousty Sabaidi')),
-          ],
-        ),
-      ),
-    );
+    return const MaterialApp(home: Main());
   }
 }
