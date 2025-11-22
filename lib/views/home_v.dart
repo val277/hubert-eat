@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hubert_eat/viewmodels/home_vm.dart';
+import 'package:hubert_eat/views/restaurant_v.dart';
 import 'package:hubert_eat/widgets/restauCard.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +28,17 @@ class _HomeVState extends State<HomeV> {
           spacing: 20,
           children: [
             tagsWidget(),
+            ElevatedButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Scaffold(
+                    body: RestauV(title: "value.restaurantName", id: 5),
+                  ),
+                ),
+              ),
+              child: Text('test restau'),
+            ),
             Restaucard(title: "Crousty"),
             Restaucard(title: "Subway"),
             Restaucard(title: "Quick"),
